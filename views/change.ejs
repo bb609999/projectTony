@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      img {
+         width: 100%;
+         height: auto;
+      }
+   </style>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<form class="upload-form" method="post" action='/change?_id=<%=_id %>' enctype="multipart/form-data">
+Name: <input type="text" name="name" minlength=1 value=<%=p.name %>><br>
+
+Borough: <input type="text" name="borough" minlength=1 value=<%=p.borough %>><br>
+
+Cuisine: <input type="text" name="cuisine" minlength=1 value=<%=p.cuisine %>><br>
+
+Street: <br>
+<% if (p.address){ %>
+<input type="text" name="street" minlength=1 value=<%=p.address.street %>><br>
+<% }else{%>
+  <input type="text" name="street" minlength=1 ><br>
+<%} %>
+Building: <br>
+<% if (p.address){ %>
+<input type="text" name="building" minlength=1 value=<%=p.address.building %>><br>
+<% }else{%>
+  <input type="text" name="building" minlength=1 ><br>
+<%} %>
+
+Zipcode:<br>
+<% if (p.address){ %>
+ <input type="text" name="zipcode" minlength=1 value=<%=p.address.zipcode %>><br>
+<% }else{%>
+  <input type="text" name="zipcode" minlength=1 ><br>
+<%} %>
+GPS Coordinates(lon.): <br>
+<% if (p.address){ %><input type="text" name="lon" minlength=1 value=<%=p.address.lon %>><br>
+<% }else{%>
+  <input type="text" name="lon" minlength=1 ><br>
+<%} %>
+
+GPS Coordinates(lat.): <br>
+<% if (p.address){ %>
+<input type="text" name="lat" minlength=1 value=<%=p.address.lat %>><br>
+<% }else{%>
+  <input type="text" name="lat" minlength=1 ><br>
+<%} %>
+Photo: <input type="file" name="image" ><br>
+        <input type="submit">
+        </form>
+    </div>
+</html>

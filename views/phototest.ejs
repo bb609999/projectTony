@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      img {
+         width: 100%;
+         height: auto;
+      }
+   </style>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body>
+   <div class="w3-container w3-green">
+      <center>
+         <h1>
+            <%= p.name %>
+         </h1>
+      </center>
+       
+      <% if(p.image){ %>
+      <img src="data:<%= p.image.mimetype %>;base64, <%= p.image %>">
+      <%}%>
+   </div>
+    <div class="w3-container">
+     
+        <h3>Borough:
+            <%= p.borough%>
+        </h3>
+        <h3>Cuisine:
+            <%= p.cuisine%>
+        </h3>
+        <h3>Street:
+             <%if (p.address){%>
+            <%= p.address.street%>
+             <% }%>
+        </h3>
+        
+        <h3>Building:
+          <%if (p.address){%>
+            <%= p.address.building%>
+            <% }%>
+        </h3>
+
+        <h3>Zipcode:
+            <%if (p.address){%>
+            <%= p.address.zipcode%>
+            <%}%>
+        </h3>
+        <h3>Rating:
+        <% if (p.grades){%>
+        
+            <% for (var i=0;i<p.grades.length;i++){ %>
+                  <p><%=i+1%>.  <%=p.grades[i].score%> ( <%=p.grades[i].user%> )</p>
+          <%}%>
+        <% }%>
+        </h3>
+        <h3>Created by
+            <%= p.owner%>
+        </h3>
+        <h3>GPS: </h3>
+        <% if (p.address){ %>
+        <% 
+        if (p.address.lat && p.address.lon) { %>
+        <%=p.address.lon%>, <%=p.address.lat%>
+        <h3>
+            <a href='https://www.google.com.hk/maps/search/?api=1&query=<%=p.address.lat%>,<%=p.address.lon%>'>
+                google map
+            </a>
+        </h3>
+        <% } %>
+        <%}%>
+        <a href='/rate?_id=<%= p._id%>'><button>Rate</button></a>
+        <a href='/edit?_id=<%= p._id%>'><button>Edit</button></a>
+        <a href='/delete?_id=<%= p._id%>'><button>Delete</button></a>
+        <a href='/read'><button>Go back</button></a>
+        
+    </div>
+</html>
